@@ -29,12 +29,10 @@ export default {
   methods: {
     fetch_data: function () {
       var that = this
-      this.$http.get('https://dprkshow.top:8002/api/articles/', {
-        params: { ordering: '-aid' }
-      }).then(
+      this.$http.get('http://localhost/api/articleslast3/').then(
         function (response) {
           // 取出前三篇文章
-          that.articles = response.data.results.slice(0, 3)
+          that.articles = response.data
         },
         function (err) {
           console.log(err)

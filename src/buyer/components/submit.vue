@@ -406,14 +406,15 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           const that = this
-          this.$http.post('submit/', this.ruleForm).then(
+          this.$http.post('http://localhost/api/buyersubmit/', this.ruleForm).then(
             function (response) {
-              if (response.data.code === 200) {
+              console.log(response)
+              if (response.status === 200) {
                 that.$msg({
                   message: '恭喜您，注册成功！',
                   type: 'success'
                 })
-                window.sessionStorage.setItem('bid', response.data.data.bid)
+                window.sessionStorage.setItem('bid', response.data)
                 that.$router.push('/congrat')
               } else {
                 that.$msg.error('服务器错误，注册失败')

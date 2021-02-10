@@ -47,15 +47,16 @@ export default {
   methods: {
     fetch_data: function (currentPage = '1') {
       var that = this
-      axios.get('https://dprkshow.top:8002/api/articles/', {
+      axios.get('http://localhost/api/articles/', {
         params: {
-          page: currentPage,
-          ordering: '-aid'
+          pageNum: parseInt(currentPage),
+          pageSize: 3
         }
       }).then(
         function (response) {
-          that.articles = response.data.results
-          that.pages = response.data.pages
+          console.log(response)
+          that.articles = response.data.list
+          that.pages = response.data.navigatepageNums
         },
         function (err) {
           console.log(err)

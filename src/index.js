@@ -12,8 +12,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 // 字体图标
 import '../public/fonts/iconfont.css'
-
-import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/pie'
@@ -24,6 +22,9 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/geo'
 
 import axios from 'axios'
+
+// import * as echarts from 'echarts/lib/echarts'
+var echarts = require('echarts')
 Vue.prototype.$http = axios
 
 Vue.prototype.$echarts = echarts

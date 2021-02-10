@@ -16,8 +16,6 @@ import {
 import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from 'axios'
-// 配置请求的根路径
-axios.defaults.baseURL = 'https://dprkshow.top:8002/api/buyer/'
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false

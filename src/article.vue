@@ -55,9 +55,9 @@ export default {
 
     get_count: function () {
       var that = this
-      axios.get('https://dprkshow.top:8002/api/articles/').then(
+      axios.get('http://localhost/api/articlecount/').then(
         function (response) {
-          that.count = response.data.count
+          that.count = response.data
         },
         function (err) {
           console.log(err)
@@ -75,8 +75,12 @@ export default {
 
     fetch_data: function () {
       var that = this
-      var url = 'https://dprkshow.top:8002/api/article/' + that.aid + '/'
-      axios.get(url).then(
+      var url = 'http://localhost/api/article/'
+      axios.get(url, {
+        params: {
+          aid: that.aid
+        }
+      }).then(
         function (response) {
           that.article = response.data
         },

@@ -403,7 +403,7 @@ export default {
       value: '',
       ruleForm: {
         username: '',
-        passowrd: '',
+        password: '',
         password2: '',
         company: '',
         section: '',
@@ -452,10 +452,14 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // 密码加密
+          // let ruleFormSend = JSON.parse(JSON.stringify(this.ruleForm))
+          const Base64 = require('js-base64').Base64
+          this.ruleForm.password = Base64.encode(this.ruleForm.password)
           const that = this
-          this.$http.post('register/', this.ruleForm).then(
+          this.$http.post('exregister/', this.ruleForm).then(
             function (response) {
-              if (response.data.code === 200) {
+              if (response.status === 200) {
                 that.$msg({
                   message: '恭喜您，注册成功！',
                   type: 'success'
