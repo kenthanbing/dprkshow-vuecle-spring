@@ -365,6 +365,7 @@ export default {
       ],
       value: '',
       ruleForm: {
+        eid: '',
         company: '',
         section: '',
         contact: '',
@@ -401,10 +402,11 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.ruleForm.eid = this.eid
           const that = this
-          this.$http.put('info/?eid=' + that.eid, this.ruleForm).then(
+          this.$http.put('info/', this.ruleForm).then(
             function (response) {
-              if (response.data.code === 200) {
+              if (response.status === 200) {
                 that.$msg({
                   message: '恭喜您，修改成功！',
                   type: 'success'
@@ -427,15 +429,15 @@ export default {
       const that = this
       this.$http.get('info/?eid=' + that.eid).then(
         function (response) {
-          that.ruleForm.company = response.data.data.info.company
-          that.ruleForm.section = response.data.data.info.section
-          that.ruleForm.contact = response.data.data.info.contact
-          that.ruleForm.tel = response.data.data.info.tel
-          that.ruleForm.position = response.data.data.info.position
-          that.ruleForm.nation = response.data.data.info.nation
-          that.ruleForm.email = response.data.data.info.email
-          that.ruleForm.address = response.data.data.info.address
-          that.ruleForm.intro = response.data.data.info.intro
+          that.ruleForm.company = response.data.company
+          that.ruleForm.section = response.data.section
+          that.ruleForm.contact = response.data.contact
+          that.ruleForm.tel = response.data.tel
+          that.ruleForm.position = response.data.position
+          that.ruleForm.nation = response.data.nation
+          that.ruleForm.email = response.data.email
+          that.ruleForm.address = response.data.address
+          that.ruleForm.intro = response.data.intro
         },
         function (err) {
           console.log(err)

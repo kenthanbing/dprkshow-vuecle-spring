@@ -53,19 +53,20 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          const Base64 = require('js-base64').Base64
+          this.ruleForm.password = Base64.encode(this.ruleForm.password)
           const that = this
           this.$http.post('login/', this.ruleForm).then(
             function (response) {
-              if (response.data.code === 200) {
+              if (response.data.token) {
                 that.$msg({
                   message: '欢迎您，' + that.ruleForm.username + '！',
                   type: 'success'
                 })
                 // 保存token
-                console.log(response)
-                window.sessionStorage.setItem('token', response.data.data.token)
-                window.sessionStorage.setItem('eid', response.data.data.eid)
-                window.sessionStorage.setItem('username', response.data.data.username)
+                window.sessionStorage.setItem('token', response.data.token)
+                window.sessionStorage.setItem('eid', response.data.eid)
+                window.sessionStorage.setItem('username', response.data.username)
                 that.$router.push('/home')
               } else {
                 that.$msg.error('用户名或密码错误')
