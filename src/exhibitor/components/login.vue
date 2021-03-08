@@ -53,8 +53,6 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          const Base64 = require('js-base64').Base64
-          this.ruleForm.password = Base64.encode(this.ruleForm.password)
           const that = this
           this.$http.post('login/', this.ruleForm).then(
             function (response) {

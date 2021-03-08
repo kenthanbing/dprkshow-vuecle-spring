@@ -452,10 +452,6 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          // 密码加密
-          // let ruleFormSend = JSON.parse(JSON.stringify(this.ruleForm))
-          const Base64 = require('js-base64').Base64
-          this.ruleForm.password = Base64.encode(this.ruleForm.password)
           const that = this
           this.$http.post('exregister/', this.ruleForm).then(
             function (response) {

@@ -84,13 +84,9 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.ruleForm.eid = this.eid
-          const Base64 = require('js-base64').Base64
-          this.ruleForm.pwd = Base64.encode(this.ruleForm.pwd)
-          this.ruleForm.new_pwd = Base64.encode(this.ruleForm.new_pwd)
           const that = this
           this.$http.post('pwd/', this.ruleForm).then(
             function (response) {
-              console.log(response)
               if (response.data.data === 'Update success!') {
                 that.$msg({
                   message: '恭喜您，修改密码成功！请牢记新密码。',
